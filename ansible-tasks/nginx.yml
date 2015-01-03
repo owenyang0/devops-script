@@ -19,3 +19,6 @@
 
 - name : Install Nginx
   shell: apt-get install nginx -y
+
+- name : Write Nginx Configuration
+  copy : src=default.confg dest=/etc/nginx/conf.d/default.conf
