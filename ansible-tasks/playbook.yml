@@ -1,0 +1,23 @@
+---
+- hosts: all
+  sudo: yes
+  remote_user: vagrant
+  tasks:
+    - name: Install Python-Apt
+      shell: apt-get install python-apt -y
+
+    - name: Update source list
+      copy: src=../sources.list dest=/etc/apt/sources.list
+
+    - name: Copy temple files
+      copy: src=nginx_signing.key dest=/tmp/nginx_signing.key
+
+    - name: test
+      shell: echo 'hello' > /vagrant/t.txt
+
+    - name: Install nginx
+      include: nginx.yml
+
+  handlers:
+    - name : Clean Temple Files
+      shell: rm -rf /tmp/*

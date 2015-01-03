@@ -1,0 +1,21 @@
+---
+- name: Add Nginx Source List Deb
+  shell: echo "deb http://nginx.org/packages/ubuntu/ precise nginx" | tee /etc/apt/sources.list.d/webupd8team-nginx.list
+
+- name : Add Java Source List Deb-Src
+  shell: echo "deb-src http://nginx.org/packages/ubuntu/ precise nginx" | tee -a /etc/apt/sources.list.d/webupd8team-nginx.list
+
+- name : Add Nginx Signing key
+  shell: apt-key add /tmp/nginx_signing.key
+
+- name: Update Apt Cache
+  shell: apt-get update
+
+- name: Install VIM
+  shell: apt-get install vim -y
+
+- name: Install Python-Apt
+  shell: apt-get install python-apt -y
+
+- name : Install Nginx
+  shell: apt-get install nginx -y
